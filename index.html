@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小贝AI - AI API 中转服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #3730A3;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --text-light: #F1F5F9;
+            --text-gray: #94A3B8;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        }
+        
+        /* Hero区域 */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(79, 70, 229, 0.1) 0%, transparent 100%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #818CF8;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, white, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background: var(--bg-card);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        /* 功能特性 */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 1.125rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.9375rem;
+        }
+        
+        /* 模型列表 */
+        .models {
+            padding: 4rem 2rem;
+            background: rgba(79, 70, 229, 0.05);
+        }
+        
+        .models-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .model-badge {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .model-badge:hover {
+            border-color: var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .model-badge .name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .model-badge .price {
+            color: var(--secondary);
+            font-size: 0.875rem;
+        }
+        
+        /* 价格 */
+        .pricing {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .price-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .price-card.popular::before {
+            content: '最受欢迎';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .price-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+        
+        .price-card .desc {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.9375rem;
+        }
+        
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-card li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            font-size: 0.9375rem;
+        }
+        
+        .price-card li::before {
+            content: '✓';
+            color: var(--secondary);
+            margin-right: 0.5rem;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(79, 70, 229, 0.1));
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+        
+        /* 页脚 */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+        
+        .footer a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-card.popular {
+                transform: none;
+            }
+        }
+        
+        /* 动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* 代码示例 */
+        .code-demo {
+            background: #0D1117;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+            overflow-x: auto;
+        }
+        
+        .code-demo pre {
+            color: #E6EDF3;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+        
+        .code-demo .comment { color: #8B949E; }
+        .code-demo .keyword { color: #FF7B72; }
+        .code-demo .string { color: #A5D6FF; }
+        .code-demo .function { color: #D2A8FF; }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">🐚</div>
+                <span>小贝AI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">功能特点</a></li>
+                <li><a href="#models">支持的模型</a></li>
+                <li><a href="#pricing">价格方案</a></li>
+                <li><a href="#docs">开发文档</a></li>
+            </ul>
+            <a href="#" class="btn-primary">立即开始</a>
+        </div>
+    </nav>
+    
+    <!-- Hero区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">🚀 国内直连 · 稳定高速</span>
+            <h1>小贝AI API 中转服务</h1>
+            <p>国内领先的大模型API聚合平台，支持GPT、Claude、DeepSeek等主流模型，国内直连无需科学上网，企业级稳定性保障</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">免费注册</a>
+                <a href="#docs" class="btn-secondary">查看文档</a>
+            </div>
+            
+            <!-- 代码示例 -->
+            <div class="code-demo">
+                <pre><span class="comment"># 5秒接入，兼容OpenAI格式</span>
+<span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
+
+client = OpenAI(
+    api_key=<span class="string">"<span class="function">YOUR_API_KEY</span>"</span>,
+    base_url=<span class="string">"https://api.xiaobei.me/v1"</span>
+)
+
+response = client.chat.completions.create(
+    model=<span class="string">"gpt-4o"</span>,
+    messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"你好"</span>}]
+)
+<span class="keyword">print</span>(response.choices[0].message.content)</pre>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 功能特点 -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>为什么选择小贝AI？</h2>
+            <p>专为国内开发者打造的企业级AI API服务</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>国内直连</h3>
+                <p>服务器部署在国内，访问延迟低至50ms，无需科学上网，开箱即用</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>支付宝/微信</h3>
+                <p>支持支付宝、微信支付，无需海外信用卡人民币直接付款</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>稳定安全</h3>
+                <p>企业级SLA保障，多节点冗余备份，数据安全加密传输</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>价格实惠</h3>
+                <p>官方价格的5-8折，新用户赠送100万Token体验额度</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>丰富模型</h3>
+                <p>聚合GPT-4o、Claude 3.5、DeepSeek等30+主流模型</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>简易集成</h3>
+                <p>OpenAI兼容API格式，只需修改base_url即可迁移</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 支持的模型 -->
+    <section class="models" id="models">
+        <div class="models-content">
+            <div class="section-title">
+                <h2>支持的AI模型</h2>
+                <p>持续更新更多模型，敬请期待</p>
+            </div>
+            <div class="models-grid">
+                <div class="model-badge">
+                    <div class="name">GPT-4o</div>
+                    <div class="price">¥0.15/千Token</div>
+                </div>
+                <div class="model-badge">
+                    <div class="name">GPT-4o-mini</div>
+                    <div class="price">¥0.05/千Token</div>
+                </div>
+                <div class="model-badge">
+                    <div class="name">Claude 3.5 Sonnet</div>
+                    <div class="price">¥0.13/千Token</div>
+                </div>
+                <div class="model-badge">
+                    <div class="name">Claude 3.7 Sonnet</div>
+                    <div class="price">¥0.20/千Token</div>
+                </div>
+                <div class="model-badge">
+                    <div class="name">DeepSeek V3</div>
+                    <div class="price">¥0.01/千Token</div>
+                </div>
+                <div class="model-badge">
+                    <div class="name">Gemini 2.0 Flash</div>
+                    <div class="price">¥0.025/千Token</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 价格方案 -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>简单透明的定价</h2>
+            <p>按量计费，用多少付多少，绝无套路</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>体验版</h3>
+                <div class="price">¥29<span>/月</span></div>
+                <p class="desc">适合个人尝鲜</p>
+                <ul>
+                    <li>100万Token/月</li>
+                    <li>支持GPT-4o-mini</li>
+                    <li>支付宝/微信充值</li>
+                    <li>Email技术支持</li>
+                </ul>
+                <a href="#" class="btn-secondary" style="width:100%">立即开通</a>
+            </div>
+            <div class="price-card popular">
+                <h3>标准版</h3>
+                <div class="price">¥99<span>/月</span></div>
+                <p class="desc">适合开发者</p>
+                <ul>
+                    <li>500万Token/月</li>
+                    <li>支持全模型</li>
+                    <li>优先响应通道</li>
+                    <li>API使用统计</li>
+                </ul>
+                <a href="#" class="btn-primary" style="width:100%">立即开通</a>
+            </div>
+            <div class="price-card">
+                <h3>企业版</h3>
+                <div class="price">¥299<span>/月</span></div>
+                <p class="desc">适合团队/企业</p>
+                <ul>
+                    <li>2000万Token/月</li>
+                    <li>无限额度升级</li>
+                    <li>专属客户经理</li>
+                    <li>SLA服务保障</li>
+                </ul>
+                <a href="#" class="btn-secondary" style="width:100%">立即开通</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>开始使用小贝AI</h2>
+            <p>注册即送100万Token体验额度，无需信用卡，国内直连稳定快速</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">免费注册</a>
+                <a href="#docs" class="btn-secondary">联系客服</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2026 小贝AI API 中转服务 | <a href="#">使用条款</a> | <a href="#">隐私政策</a></p>
+        <p style="margin-top:0.5rem;color:#64748B;">新越（海南）一人有限公司 运营</p>
+    </footer>
+</body>
+</html>
