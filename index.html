@@ -413,6 +413,25 @@
             .price-card.popular {
                 transform: none;
             }
+
+            /* 移动端代码窗口适配 */
+            .code-demo {
+                margin-top: 1.5rem;
+                border-radius: 10px;
+            }
+            .code-demo pre {
+                font-size: 0.75rem;
+                padding: 1rem 1rem 1rem 0;
+                line-height: 1.7;
+            }
+            .code-demo .ln {
+                min-width: 2rem;
+                padding-right: 0.75rem;
+                font-size: 0.6875rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
         }
         
         /* 动画 */
@@ -425,27 +444,76 @@
             animation: float 3s ease-in-out infinite;
         }
         
-        /* 代码示例 */
+        /* 代码示例 - 专业编辑器风格 */
         .code-demo {
             background: #0D1117;
             border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             text-align: left;
-            overflow-x: auto;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
         }
-        
+
+        /* 顶部标题栏 */
+        .code-demo-header {
+            background: #161B22;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* 三色圆点 */
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .code-dot.red    { background: #FF5F57; }
+        .code-dot.yellow { background: #FFBD2E; }
+        .code-dot.green  { background: #28C840; }
+
+        .code-demo-title {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6E7681;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            margin-right: 36px; /* 补偿左侧三个圆点宽度，使标题居中 */
+        }
+
         .code-demo pre {
             color: #E6EDF3;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.875rem;
-            line-height: 1.7;
+            line-height: 1.8;
+            padding: 1.5rem 1.5rem 1.5rem 0;
+            overflow-x: auto;
         }
-        
+
+        /* 行号 */
+        .code-demo .line {
+            display: flex;
+        }
+        .code-demo .ln {
+            color: #3D444D;
+            user-select: none;
+            min-width: 2.5rem;
+            padding-right: 1rem;
+            text-align: right;
+            font-size: 0.8125rem;
+        }
+
         .code-demo .comment { color: #8B949E; }
         .code-demo .keyword { color: #FF7B72; }
-        .code-demo .string { color: #A5D6FF; }
-        .code-demo .function { color: #D2A8FF; }
+        .code-demo .string  { color: #A5D6FF; }
+        .code-demo .func    { color: #D2A8FF; }
+        .code-demo .var     { color: #79C0FF; }
+        .code-demo .paren   { color: #FFA657; }
+        .code-demo .plain   { color: #E6EDF3; }
     </style>
 </head>
 <body>
@@ -477,21 +545,32 @@
                 <a href="#docs" class="btn-secondary">查看文档</a>
             </div>
             
-            <!-- 代码示例 -->
+            <!-- 代码示例 - 专业编辑器风格 -->
             <div class="code-demo">
-                <pre><span class="comment"># 5秒接入，兼容OpenAI格式</span>
-<span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
-
-client = OpenAI(
-    api_key=<span class="string">"<span class="function">YOUR_API_KEY</span>"</span>,
-    base_url=<span class="string">"https://api.xiaobei.me/v1"</span>
-)
-
-response = client.chat.completions.create(
-    model=<span class="string">"gpt-4o"</span>,
-    messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"你好"</span>}]
-)
-<span class="keyword">print</span>(response.choices[0].message.content)</pre>
+                <!-- 顶部标题栏 -->
+                <div class="code-demo-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-demo-title">quickstart.py</span>
+                </div>
+                <!-- 代码内容 -->
+                <pre>
+<span class="line"><span class="ln">1</span><span class="comment"># ✅ 5秒接入，完全兼容 OpenAI 格式</span></span>
+<span class="line"><span class="ln">2</span><span class="keyword">from</span> <span class="var">openai</span> <span class="keyword">import</span> <span class="var">OpenAI</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="var">client</span> <span class="plain">= </span><span class="func">OpenAI</span><span class="paren">(</span></span>
+<span class="line"><span class="ln">5</span>    <span class="var">api_key</span><span class="plain"> = </span><span class="string">"sk-xiaobei-xxxxxxxxxxxxxxxx"</span><span class="plain">,</span></span>
+<span class="line"><span class="ln">6</span>    <span class="var">base_url</span><span class="plain"> = </span><span class="string">"https://api.xiaobei.中国/v1"</span></span>
+<span class="line"><span class="ln">7</span><span class="paren">)</span></span>
+<span class="line"><span class="ln">8</span></span>
+<span class="line"><span class="ln">9</span><span class="var">response</span> <span class="plain">= </span><span class="var">client</span><span class="plain">.</span><span class="var">chat</span><span class="plain">.</span><span class="var">completions</span><span class="plain">.</span><span class="func">create</span><span class="paren">(</span></span>
+<span class="line"><span class="ln">10</span>    <span class="var">model</span><span class="plain">   = </span><span class="string">"gpt-4o"</span><span class="plain">,</span></span>
+<span class="line"><span class="ln">11</span>    <span class="var">messages</span><span class="plain"> = [</span><span class="paren">{</span><span class="string">"role"</span><span class="plain">: </span><span class="string">"user"</span><span class="plain">, </span><span class="string">"content"</span><span class="plain">: </span><span class="string">"你好"</span><span class="paren">}</span><span class="plain">]</span></span>
+<span class="line"><span class="ln">12</span><span class="paren">)</span></span>
+<span class="line"><span class="ln">13</span></span>
+<span class="line"><span class="ln">14</span><span class="keyword">print</span><span class="paren">(</span><span class="var">response</span><span class="plain">.</span><span class="var">choices</span><span class="plain">[</span><span class="var">0</span><span class="plain">].</span><span class="var">message</span><span class="plain">.</span><span class="var">content</span><span class="paren">)</span></span>
+</pre>
             </div>
         </div>
     </section>
