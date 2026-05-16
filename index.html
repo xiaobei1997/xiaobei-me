@@ -421,12 +421,15 @@
             }
             .code-demo pre {
                 font-size: 0.75rem;
-                padding: 1rem 1rem 1rem 0;
+                padding: 1rem 1.25rem;
                 line-height: 1.7;
             }
-            .code-demo .ln {
-                min-width: 2rem;
-                padding-right: 0.75rem;
+            .code-demo pre code {
+                padding-left: 2rem;
+            }
+            .code-demo pre code::before {
+                min-width: 1.5rem;
+                padding-right: 0.5rem;
                 font-size: 0.6875rem;
             }
             .hero p {
@@ -490,20 +493,30 @@
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.875rem;
             line-height: 1.8;
-            padding: 1.5rem 1.5rem 1.5rem 0;
+            padding: 1.5rem 1.5rem 1.5rem 1.5rem;
             overflow-x: auto;
+            counter-reset: line;
+        }
+
+        /* 每行代码 */
+        .code-demo pre code {
+            display: block;
+            padding-left: 2.5rem;
+            position: relative;
+            white-space: pre;
         }
 
         /* 行号 */
-        .code-demo .line {
-            display: flex;
-        }
-        .code-demo .ln {
+        .code-demo pre code::before {
+            counter-increment: line;
+            content: counter(line);
+            position: absolute;
+            left: 0;
             color: #3D444D;
             user-select: none;
-            min-width: 2.5rem;
-            padding-right: 1rem;
+            min-width: 2rem;
             text-align: right;
+            padding-right: 1rem;
             font-size: 0.8125rem;
         }
 
@@ -555,21 +568,20 @@
                     <span class="code-demo-title">quickstart.py</span>
                 </div>
                 <!-- 代码内容 -->
-                <pre>
-<span class="line"><span class="ln">1</span><span class="comment"># ✅ 5秒接入，完全兼容 OpenAI 格式</span></span>
-<span class="line"><span class="ln">2</span><span class="keyword">from</span> <span class="var">openai</span> <span class="keyword">import</span> <span class="var">OpenAI</span></span>
-<span class="line"><span class="ln">3</span></span>
-<span class="line"><span class="ln">4</span><span class="var">client</span> <span class="plain">= </span><span class="func">OpenAI</span><span class="paren">(</span></span>
-<span class="line"><span class="ln">5</span>    <span class="var">api_key</span><span class="plain"> = </span><span class="string">"sk-xiaobei-xxxxxxxxxxxxxxxx"</span><span class="plain">,</span></span>
-<span class="line"><span class="ln">6</span>    <span class="var">base_url</span><span class="plain"> = </span><span class="string">"https://api.xiaobei.中国/v1"</span></span>
-<span class="line"><span class="ln">7</span><span class="paren">)</span></span>
-<span class="line"><span class="ln">8</span></span>
-<span class="line"><span class="ln">9</span><span class="var">response</span> <span class="plain">= </span><span class="var">client</span><span class="plain">.</span><span class="var">chat</span><span class="plain">.</span><span class="var">completions</span><span class="plain">.</span><span class="func">create</span><span class="paren">(</span></span>
-<span class="line"><span class="ln">10</span>    <span class="var">model</span><span class="plain">   = </span><span class="string">"gpt-4o"</span><span class="plain">,</span></span>
-<span class="line"><span class="ln">11</span>    <span class="var">messages</span><span class="plain"> = [</span><span class="paren">{</span><span class="string">"role"</span><span class="plain">: </span><span class="string">"user"</span><span class="plain">, </span><span class="string">"content"</span><span class="plain">: </span><span class="string">"你好"</span><span class="paren">}</span><span class="plain">]</span></span>
-<span class="line"><span class="ln">12</span><span class="paren">)</span></span>
-<span class="line"><span class="ln">13</span></span>
-<span class="line"><span class="ln">14</span><span class="keyword">print</span><span class="paren">(</span><span class="var">response</span><span class="plain">.</span><span class="var">choices</span><span class="plain">[</span><span class="var">0</span><span class="plain">].</span><span class="var">message</span><span class="plain">.</span><span class="var">content</span><span class="paren">)</span></span>
+                <pre><code><span class="comment"># ✅ 5秒接入，完全兼容 OpenAI 格式</span></code>
+<code><span class="keyword">from</span> <span class="var">openai</span> <span class="keyword">import</span> <span class="var">OpenAI</span></code>
+<code></code>
+<code><span class="var">client</span> <span class="plain">= </span><span class="func">OpenAI</span><span class="paren">(</span></code>
+<code>    <span class="var">api_key</span><span class="plain"> = </span><span class="string">"sk-xiaobei-xxxxxxxxxxxxxxxx"</span><span class="plain">,</span></code>
+<code>    <span class="var">base_url</span><span class="plain"> = </span><span class="string">"https://api.xiaobei.中国/v1"</span></code>
+<code><span class="paren">)</span></code>
+<code></code>
+<code><span class="var">response</span> <span class="plain">= </span><span class="var">client</span><span class="plain">.</span><span class="var">chat</span><span class="plain">.</span><span class="var">completions</span><span class="plain">.</span><span class="func">create</span><span class="paren">(</span></code>
+<code>    <span class="var">model</span><span class="plain">   = </span><span class="string">"gpt-4o"</span><span class="plain">,</span></code>
+<code>    <span class="var">messages</span><span class="plain"> = [</span><span class="paren">{</span><span class="string">"role"</span><span class="plain">: </span><span class="string">"user"</span><span class="plain">, </span><span class="string">"content"</span><span class="plain">: </span><span class="string">"你好"</span><span class="paren">}</span><span class="plain">]</span></code>
+<code><span class="paren">)</span></code>
+<code></code>
+<code><span class="keyword">print</span><span class="paren">(</span><span class="var">response</span><span class="plain">.</span><span class="var">choices</span><span class="plain">[</span><span class="var">0</span><span class="plain">].</span><span class="var">message</span><span class="plain">.</span><span class="var">content</span><span class="paren">)</span></code>
 </pre>
             </div>
         </div>
