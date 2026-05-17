@@ -430,6 +430,147 @@
         }
         
 
+        /* 充值/联系区域 */
+        .recharge {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(16,185,129,0.06) 0%, transparent 100%);
+        }
+        .recharge-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* 步骤条 */
+        .recharge-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+        .step-num {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .step-arrow {
+            color: var(--text-gray);
+            font-size: 1.25rem;
+        }
+        /* 收款码卡片 */
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .qr-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 1.75rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .qr-card.alipay {
+            border-color: rgba(22, 119, 255, 0.3);
+        }
+        .qr-card.alipay:hover {
+            border-color: #1677FF;
+            box-shadow: 0 0 30px rgba(22, 119, 255, 0.15);
+        }
+        .qr-card.wechat {
+            border-color: rgba(7, 193, 96, 0.3);
+        }
+        .qr-card.wechat:hover {
+            border-color: #07C160;
+            box-shadow: 0 0 30px rgba(7, 193, 96, 0.15);
+        }
+        .qr-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+        .qr-icon {
+            width: 36px;
+            height: 36px;
+            background: #1677FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+        .qr-icon.wechat-icon {
+            background: #07C160;
+        }
+        .qr-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        .qr-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid rgba(255,255,255,0.08);
+            margin-bottom: 0.75rem;
+        }
+        .qr-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+        }
+        .qr-tip {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+        /* 说明区 */
+        .recharge-notice {
+            background: rgba(79, 70, 229, 0.08);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .recharge-notice p {
+            color: var(--text-gray);
+            font-size: 0.9375rem;
+        }
+        .recharge-notice strong {
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .recharge-steps { flex-direction: column; align-items: stretch; }
+            .step-arrow { display: none; }
+            .qr-img { width: 180px; height: 180px; }
+        }
+
     </style>
 </head>
 <body>
@@ -444,6 +585,7 @@
                 <li><a href="#features">功能特点</a></li>
                 <li><a href="#models">支持的模型</a></li>
                 <li><a href="#pricing">价格方案</a></li>
+                <li><a href="#recharge">立即充值</a></li>
                 <li><a href="#docs">开发文档</a></li>
             </ul>
             <a href="#" class="btn-primary">立即开始</a>
@@ -593,8 +735,54 @@
             <h2>开始使用小贝AI</h2>
             <p>注册即送100万Token体验额度，无需信用卡，国内直连稳定快速</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary">免费注册</a>
-                <a href="#docs" class="btn-secondary">联系客服</a>
+                <a href="#recharge" class="btn-primary">立即充值</a>
+                <a href="#recharge" class="btn-secondary">联系客服</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 充值 / 联系 -->
+    <section class="recharge" id="recharge">
+        <div class="recharge-content">
+            <div class="section-title">
+                <h2>充值 & 联系我们</h2>
+                <p>扫码付款后，截图发送至微信客服，3分钟内到账</p>
+            </div>
+            <div class="recharge-steps">
+                <div class="step"><span class="step-num">1</span><span>选择套餐，确认金额</span></div>
+                <div class="step-arrow">→</div>
+                <div class="step"><span class="step-num">2</span><span>扫描下方收款码</span></div>
+                <div class="step-arrow">→</div>
+                <div class="step"><span class="step-num">3</span><span>截图+备注昵称发微信客服</span></div>
+                <div class="step-arrow">→</div>
+                <div class="step"><span class="step-num">4</span><span>3分钟内发送 API Key</span></div>
+            </div>
+            <div class="qr-grid">
+                <!-- 支付宝 -->
+                <div class="qr-card alipay">
+                    <div class="qr-header">
+                        <span class="qr-icon">支</span>
+                        <span class="qr-title">支付宝收款</span>
+                    </div>
+                    <img src="images/alipay-qr.jpg" alt="支付宝收款码" class="qr-img" />
+                    <p class="qr-name">泰山</p>
+                    <p class="qr-tip">打开支付宝 → 扫一扫</p>
+                </div>
+                <!-- 微信 -->
+                <div class="qr-card wechat">
+                    <div class="qr-header">
+                        <span class="qr-icon wechat-icon">微</span>
+                        <span class="qr-title">微信收款</span>
+                    </div>
+                    <img src="images/wechat-qr.jpg" alt="微信收款码" class="qr-img" />
+                    <p class="qr-name">海山升明月</p>
+                    <p class="qr-tip">打开微信 → 扫一扫</p>
+                </div>
+            </div>
+            <div class="recharge-notice">
+                <p>⚡ 付款后请截图，备注「套餐名称+您的邮箱」，发送至微信客服</p>
+                <p>🔐 API Key 当天发送，7×12 小时在线</p>
+                <p>💬 微信客服：<strong>js17786980006</strong></p>
             </div>
         </div>
     </section>
