@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "functions/proxy.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     { "src": "^/v1/(.*)$", "dest": "/functions/proxy.js" },
     { "src": "^/health$", "dest": "/functions/proxy.js" },
