@@ -1,14 +1,35 @@
 {
   "version": 2,
   "builds": [
-    { "src": "functions/proxy.js", "use": "@vercel/node" },
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "images/**", "use": "@vercel/static" }
+    {
+      "src": "api/proxy.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "images/**",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
-    { "src": "^/v1/(.*)$", "dest": "/functions/proxy.js" },
-    { "src": "^/health$", "dest": "/functions/proxy.js" },
-    { "src": "^/api/health$", "dest": "/functions/proxy.js" },
-    { "src": "^/(.*)$", "dest": "/index.html" }
+    {
+      "src": "^/v1/(.*)$",
+      "dest": "/api/proxy.js"
+    },
+    {
+      "src": "^/health$",
+      "dest": "/api/proxy.js"
+    },
+    {
+      "src": "^/api/health$",
+      "dest": "/api/proxy.js"
+    },
+    {
+      "src": "^/(.*)$",
+      "dest": "/index.html"
+    }
   ]
 }
