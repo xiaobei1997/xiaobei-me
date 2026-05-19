@@ -1,17 +1,13 @@
 {
   "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/v1/(.*)",
-      "dest": "/functions/proxy"
+      "source": "/v1/:path*",
+      "destination": "/api/proxy"
     },
     {
-      "src": "/api/proxy",
-      "dest": "/functions/proxy"
-    },
-    {
-      "src": "/api/health",
-      "dest": "/functions/proxy"
+      "source": "/api/proxy/:path*",
+      "destination": "/api/proxy"
     }
   ]
 }
