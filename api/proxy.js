@@ -17,7 +17,7 @@ export default async function handler(req) {
     const { model, messages, temperature, max_tokens } = await req.json();
 
     // 从环境变量读取SiliconFlow API Key
-    const apiKey = req.env.SILICONFLOW_API_KEY;
+    const apiKey = process.env.SILICONFLOW_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: '服务器未配置API Key' }), {
         status: 500,
