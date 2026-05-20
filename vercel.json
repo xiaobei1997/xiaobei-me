@@ -3,7 +3,15 @@
   "routes": [
     {
       "src": "/v1/(.*)",
-      "dest": "/api/proxy?path=$1"
+      "dest": "/functions/proxy"
+    },
+    {
+      "src": "/api/proxy",
+      "dest": "/functions/proxy"
+    },
+    {
+      "src": "/api/health",
+      "dest": "/functions/proxy"
     }
   ]
 }
