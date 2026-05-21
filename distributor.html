@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小贝AI - 加盟商计划 | AI API 中转服务</title>
-    <meta name="description" content="加入小贝AI加盟商计划，低成本接入DeepSeek/Qwen/Kimi等顶级大模型 API，享高额差价收益，稳定月入过万。">
+    <title>小贝AI - AI API 充值 | DeepSeek/Qwen/Kimi 低价直充</title>
+    <meta name="description" content="小贝AI API中转站，DeepSeek/Qwen/Kimi 全网低价，¥500起充，即充即用，稳定高速。">
     <style>
         :root {
             --primary: #4F46E5;
             --primary-light: #6366F1;
             --secondary: #10B981;
             --accent: #F59E0B;
+            --danger: #EF4444;
             --bg-dark: #0F172A;
             --bg-card: #1E293B;
             --bg-card-hover: #253347;
@@ -48,54 +49,58 @@
         .logo-icon {
             width: 38px; height: 38px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 9px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.125rem;
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links {
+            display: flex; gap: 2.5rem; list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+            transition: color 0.2s;
+        }
         .nav-links a:hover { color: white; }
         .nav-cta {
             background: var(--primary); color: white;
-            padding: 0.5rem 1.25rem; border-radius: 8px;
-            font-weight: 600; font-size: 0.875rem;
-            text-decoration: none; transition: all 0.2s;
+            padding: 0.625rem 1.5rem; border-radius: 8px;
+            font-weight: 600; font-size: 0.9rem; text-decoration: none;
+            transition: background 0.2s;
         }
-        .nav-cta:hover { background: var(--primary-light); transform: translateY(-1px); }
+        .nav-cta:hover { background: var(--primary-light); }
 
         /* Hero */
         .hero {
             padding: 8rem 2rem 5rem;
             text-align: center;
-            background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(79,70,229,0.15), transparent);
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,70,229,0.15), transparent);
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: rgba(79,70,229,0.15); border: 1px solid rgba(79,70,229,0.3);
-            color: #818CF8; padding: 0.375rem 1rem; border-radius: 100px;
-            font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
-            letter-spacing: 0.05em;
+            padding: 0.4rem 1rem; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 600; color: #818CF8;
+            margin-bottom: 1.5rem;
         }
         .hero h1 {
-            font-size: clamp(2.25rem, 5vw, 3.5rem);
-            font-weight: 800; line-height: 1.15;
-            margin-bottom: 1.25rem;
-            background: linear-gradient(135deg, #fff 0%, #CBD5E1 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15;
+            margin-bottom: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto;
         }
-        .hero h1 em { font-style: normal; color: #818CF8; -webkit-text-fill-color: #818CF8; }
+        .hero h1 em { font-style: normal; color: var(--secondary); }
         .hero-sub {
-            font-size: 1.125rem; color: var(--text-gray);
-            max-width: 600px; margin: 0 auto 2.5rem;
-            line-height: 1.7;
+            color: var(--text-gray); font-size: 1.1rem; max-width: 600px;
+            margin: 0 auto 2.5rem; line-height: 1.75;
         }
-        .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-actions {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+        }
         .btn-primary {
-            background: var(--primary); color: white;
-            padding: 0.875rem 2rem; border-radius: 10px;
-            font-weight: 700; font-size: 1rem; text-decoration: none;
-            transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white; padding: 0.875rem 2rem; border-radius: 10px;
+            font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-flex;
+            align-items: center; gap: 0.5rem; border: none; cursor: pointer;
+            transition: all 0.2s; box-shadow: 0 4px 20px rgba(79,70,229,0.4);
         }
-        .btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(79,70,229,0.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(79,70,229,0.5); }
         .btn-secondary {
             background: var(--bg-card); color: white;
             padding: 0.875rem 2rem; border-radius: 10px;
@@ -107,7 +112,7 @@
         /* 数字指标 */
         .stats {
             display: grid; grid-template-columns: repeat(4, 1fr);
-            max-width: 1000px; margin: 3.5rem auto 0;
+            max-width: 900px; margin: 3rem auto 0;
             gap: 1px; background: var(--border);
             border-radius: 16px; overflow: hidden;
         }
@@ -115,8 +120,8 @@
         .stat-num { font-size: 1.875rem; font-weight: 800; color: var(--primary-light); }
         .stat-label { font-size: 0.8rem; color: var(--text-gray); margin-top: 0.25rem; }
 
-        /* 区块标题 */
-        .section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        /* 区块 */
+        .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
         .section-tag {
             display: inline-block; font-size: 0.75rem; font-weight: 700;
             color: var(--secondary); letter-spacing: 0.1em; text-transform: uppercase;
@@ -128,62 +133,82 @@
         }
         .section-sub { color: var(--text-gray); font-size: 1.05rem; max-width: 600px; margin-bottom: 3rem; }
 
-        /* 为什么加盟 */
-        .why-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
+        /* 套餐卡片 */
+        .packages {
+            display: grid; grid-template-columns: repeat(4, 1fr);
             gap: 1.25rem;
         }
-        .why-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 16px; padding: 2rem;
-            transition: all 0.25s;
+        .pkg {
+            background: var(--bg-card); border: 2px solid var(--border);
+            border-radius: 20px; padding: 2rem 1.5rem; text-align: center;
+            transition: all 0.3s; cursor: pointer; position: relative;
         }
-        .why-card:hover {
-            border-color: rgba(99,102,241,0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        .pkg:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+        .pkg.popular {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(79,70,229,0.08));
         }
-        .why-icon {
-            width: 52px; height: 52px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 1.25rem;
+        .pkg.popular::before {
+            content: '最受欢迎'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white; font-size: 0.7rem; font-weight: 700; padding: 0.3rem 1rem;
+            border-radius: 0 0 10px 10px; letter-spacing: 0.05em;
         }
-        .why-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .why-card p { font-size: 0.875rem; color: var(--text-gray); line-height: 1.65; }
+        .pkg.popular { padding-top: 2.5rem; }
+        .pkg-price { font-size: 2.5rem; font-weight: 800; color: var(--text-light); }
+        .pkg-price small { font-size: 1rem; font-weight: 400; color: var(--text-gray); }
+        .pkg-tokens { font-size: 0.8rem; color: var(--text-gray); margin: 0.5rem 0 1rem; }
+        .pkg-credit { display: inline-block; background: rgba(16,185,129,0.15); color: var(--secondary); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 100px; margin-bottom: 1rem; }
+        .pkg-features { text-align: left; margin-top: 1rem; }
+        .pkg-features li { list-style: none; padding: 0.4rem 0; font-size: 0.85rem; color: var(--text-gray); display: flex; align-items: center; gap: 0.5rem; }
+        .pkg-features li::before { content: '✓'; color: var(--secondary); font-weight: 700; }
 
-        /* 模型价格 */
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-        .pricing-card {
+        /* 模型价格表 */
+        .model-table {
             background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 16px; padding: 1.75rem;
-            transition: all 0.25s;
+            border-radius: 16px; overflow: hidden;
         }
-        .pricing-card:hover { border-color: rgba(99,102,241,0.3); }
-        .pricing-model { font-size: 0.7rem; font-weight: 700; color: var(--text-gray); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .pricing-name { font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; }
-        .pricing-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.875rem;
+        .model-table table { width: 100%; border-collapse: collapse; }
+        .model-table th {
+            background: rgba(255,255,255,0.03); padding: 1rem 1.25rem;
+            text-align: left; font-size: 0.8rem; font-weight: 700; color: var(--text-gray);
+            letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid var(--border);
         }
-        .pricing-row:last-child { border-bottom: none; }
-        .pricing-label { color: var(--text-gray); }
-        .pricing-val { font-weight: 600; }
-        .pricing-val.green { color: var(--secondary); }
-        .pricing-val.highlight { color: var(--accent); }
+        .model-table td { padding: 1rem 1.25rem; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .model-table tr:last-child td { border-bottom: none; }
+        .model-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .tag {
+            display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem;
+        }
+        .tag-rec { background: rgba(16,185,129,0.15); color: var(--secondary); }
+        .tag-new { background: rgba(245,158,11,0.15); color: var(--accent); }
 
-        /* 三步开始 */
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
-        .steps::before {
-            content: ''; position: absolute; top: 28px; left: 15%; right: 15%;
+        /* 对比 */
+        .compare-box {
+            background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(16,185,129,0.08));
+            border: 1px solid rgba(99,102,241,0.2); border-radius: 20px;
+            padding: 3rem; margin-top: 3rem;
+        }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+        .compare-item { text-align: center; }
+        .compare-item .label { font-size: 0.8rem; color: var(--text-gray); margin-bottom: 0.5rem; }
+        .compare-item .val { font-size: 1.375rem; font-weight: 800; }
+        .compare-item .val.green { color: var(--secondary); }
+        .compare-item .val.red { color: var(--danger); }
+        .compare-item .val.primary { color: var(--primary-light); }
+        .compare-item .arrow { font-size: 1.25rem; color: var(--text-gray); margin: 0.5rem 0; }
+        .compare-item .save { color: var(--secondary); font-size: 0.85rem; font-weight: 600; }
+
+        /* 购买流程 */
+        .buy-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+        .buy-steps::before {
+            content: ''; position: absolute; top: 28px; left: 12%; right: 12%;
             height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary));
             opacity: 0.3;
         }
-        .step { text-align: center; position: relative; }
-        .step-num {
+        .buy-step { text-align: center; position: relative; }
+        .buy-step-num {
             width: 56px; height: 56px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             display: flex; align-items: center; justify-content: center;
@@ -191,54 +216,91 @@
             position: relative; z-index: 1;
             box-shadow: 0 0 0 6px rgba(79,70,229,0.15);
         }
-        .step h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .step p { font-size: 0.875rem; color: var(--text-gray); line-height: 1.6; }
+        .buy-step h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .buy-step p { font-size: 0.875rem; color: var(--text-gray); line-height: 1.6; }
 
-        /* API 文档 */
-        .api-demo {
-            background: #0D1117; border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; overflow: hidden;
+        /* 购买表单 */
+        .buy-form-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 3rem; max-width: 600px; margin: 3rem auto 0;
         }
-        .api-tabs {
-            display: flex; border-bottom: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.02);
+        .form-title { font-size: 1.375rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .form-sub { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-gray); }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.875rem 1rem;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 10px; color: var(--text-light); font-size: 1rem;
+            outline: none; transition: border-color 0.2s;
         }
-        .api-tab {
-            padding: 0.875rem 1.5rem; font-size: 0.8rem; font-weight: 600;
-            color: var(--text-gray); cursor: pointer; border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+        .form-group input:focus, .form-group select:focus { border-color: var(--primary-light); }
+        .form-group input::placeholder { color: var(--text-gray); opacity: 0.6; }
+        .form-group select option { background: var(--bg-dark); }
+        .pkg-select-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+        .pkg-radio { display: none; }
+        .pkg-radio-label {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.04); border: 2px solid var(--border);
+            border-radius: 12px; padding: 1rem 0.5rem; cursor: pointer;
+            transition: all 0.2s; text-align: center;
         }
-        .api-tab.active { color: var(--primary-light); border-bottom-color: var(--primary-light); }
-        .api-code {
-            padding: 1.5rem; font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-            font-size: 0.8125rem; line-height: 1.7; color: #E2E8F0;
-            white-space: pre; overflow-x: auto;
+        .pkg-radio:checked + .pkg-radio-label {
+            border-color: var(--primary); background: rgba(79,70,229,0.15);
         }
-        .api-code .k { color: #7DD3FC; }
-        .api-code .s { color: #86EFAC; }
-        .api-code .c { color: #6B7280; }
-        .api-code .fn { color: #C4B5FD; }
+        .pkg-radio-label:hover { border-color: rgba(99,102,241,0.4); }
+        .pkg-radio-label .pkg-r-price { font-size: 1.25rem; font-weight: 800; }
+        .pkg-radio-label .pkg-r-cred { font-size: 0.75rem; color: var(--text-gray); margin-top: 0.25rem; }
+        .submit-btn {
+            width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px rgba(79,70,229,0.4);
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(79,70,229,0.5); }
+        .submit-note { text-align: center; color: var(--text-gray); font-size: 0.8rem; margin-top: 1rem; }
 
-        /* 收益计算 */
-        .profit-box {
-            background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(16,185,129,0.1));
-            border: 1px solid rgba(99,102,241,0.2);
-            border-radius: 20px; padding: 3rem;
-            text-align: center; margin-top: 3rem;
+        /* 成功弹窗 */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px); z-index: 9999;
+            display: none; align-items: center; justify-content: center; padding: 1rem;
         }
-        .profit-box h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 2rem; }
-        .profit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .profit-item {}
-        .profit-item .label { font-size: 0.8rem; color: var(--text-gray); margin-bottom: 0.5rem; }
-        .profit-item .value { font-size: 1.5rem; font-weight: 800; color: var(--secondary); }
-        .profit-item .value.accent { color: var(--accent); }
-        .profit-item .arrow { font-size: 1.5rem; color: var(--text-gray); margin-top: 0.5rem; }
+        .modal-overlay.show { display: flex; }
+        .modal {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 3rem; max-width: 480px; width: 100%;
+            text-align: center; animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .modal h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .modal p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        .modal-qr { background: white; border-radius: 12px; padding: 1rem; display: inline-block; margin-bottom: 1.5rem; }
+        .modal-qr img { width: 200px; height: 200px; display: block; }
+        .modal-wechat { font-size: 1rem; color: var(--text-gray); margin-bottom: 1rem; }
+        .modal-wechat strong { color: var(--text-light); font-size: 1.1rem; }
+        .modal-note { font-size: 0.8rem; color: var(--text-gray); background: rgba(255,255,255,0.04); padding: 0.75rem; border-radius: 8px; margin-top: 1rem; }
+        .modal-close {
+            margin-top: 1rem; background: transparent; border: 1px solid var(--border);
+            color: var(--text-gray); padding: 0.6rem 1.5rem; border-radius: 8px;
+            cursor: pointer; font-size: 0.9rem; transition: all 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.05); }
+
+        /* 保障 */
+        .guarantees { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+        .guarantee {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.75rem; text-align: center;
+        }
+        .guarantee-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .guarantee h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .guarantee p { font-size: 0.85rem; color: var(--text-gray); line-height: 1.6; }
 
         /* FAQ */
         .faq-list { max-width: 720px; margin: 0 auto; }
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-        }
+        .faq-item { border-bottom: 1px solid var(--border); }
         .faq-q {
             display: flex; justify-content: space-between; align-items: center;
             padding: 1.25rem 0; cursor: pointer; font-weight: 600;
@@ -273,15 +335,17 @@
         /* 响应式 */
         @media (max-width: 900px) {
             .stats { grid-template-columns: repeat(2, 1fr); }
-            .why-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .steps::before { display: none; }
-            .profit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .packages { grid-template-columns: repeat(2, 1fr); }
+            .buy-steps { grid-template-columns: 1fr 1fr; }
+            .buy-steps::before { display: none; }
+            .compare-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .guarantees { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .pkg-select-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
             .stats { grid-template-columns: 1fr 1fr; }
+            .packages { grid-template-columns: 1fr 1fr; }
             .hero { padding: 7rem 1.5rem 4rem; }
             .section { padding: 3.5rem 1.5rem; }
         }
@@ -297,275 +361,297 @@
             小贝AI
         </a>
         <ul class="nav-links">
-            <li><a href="#why">为什么加盟</a></li>
-            <li><a href="#models">模型与价格</a></li>
-            <li><a href="#start">如何开始</a></li>
-            <li><a href="#api">API文档</a></li>
+            <li><a href="#packages">套餐选择</a></li>
+            <li><a href="#models">模型价格</a></li>
+            <li><a href="#how">如何购买</a></li>
             <li><a href="#faq">常见问题</a></li>
         </ul>
-        <a href="home.html" class="nav-cta">返回首页</a>
+        <a href="#buy" class="nav-cta">立即充值</a>
     </div>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
     <div class="hero-badge">
-        <svg width="12" height="12" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6"/></svg>
-        2026加盟商计划开放中
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6"/></svg>
+        全网低价 · 稳定快速 · 即充即用
     </div>
-    <h1>成为小贝AI <em>加盟商</em><br>共享AI API中转红利</h1>
+    <h1>AI API 低至<em>¥1/百万Token</em><br>充值即用，无需等待</h1>
     <p class="hero-sub">
-        低门槛接入 DeepSeek / Qwen / Kimi 等顶级大模型 API，享总部供货折扣，
-        自主定价销售，差价收益全部归你，轻松月入过万。
+        接入 DeepSeek / Qwen / Kimi 等顶级大模型，官方价格的
+        <strong style="color:var(--secondary)">20%~50%</strong>，
+        充值后立刻获得 API Key，3行代码即可接入你的应用。
     </p>
     <div class="hero-actions">
-        <a href="#start" class="btn-primary">
-            立即加入
+        <a href="#buy" class="btn-primary">
+            立即充值
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#api" class="btn-secondary">查看API文档</a>
+        <a href="#models" class="btn-secondary">查看价格表</a>
     </div>
     <div class="stats">
         <div class="stat">
-            <div class="stat-num">¥500</div>
-            <div class="stat-label">最低加盟门槛</div>
+            <div class="stat-num">¥1.02</div>
+            <div class="stat-label">DeepSeek-V3 起价 / 百万Token</div>
         </div>
         <div class="stat">
-            <div class="stat-num">2x</div>
-            <div class="stat-label">建议零售加价倍数</div>
+            <div class="stat-num">¥500</div>
+            <div class="stat-label">最低充值门槛</div>
         </div>
         <div class="stat">
             <div class="stat-num">4+</div>
-            <div class="stat-label">可售模型种类</div>
+            <div class="stat-label">可用模型种类</div>
         </div>
         <div class="stat">
-            <div class="stat-num">T+0</div>
-            <div class="stat-label">实时差价结算</div>
+            <div class="stat-num">24h</div>
+            <div class="stat-label">客服响应时间</div>
         </div>
     </div>
 </section>
 
-<!-- 为什么加盟 -->
-<section class="section" id="why">
-    <div class="section-tag">为什么选择我们</div>
-    <h2>AI浪潮中，你需要一个靠谱的上游</h2>
-    <p class="section-sub">我们解决了最难的部分，你只需专注卖货赚钱。</p>
+<!-- 套餐选择 -->
+<section class="section" id="packages">
+    <div class="section-tag">充值套餐</div>
+    <h2>选择你的套餐</h2>
+    <p class="section-sub">充多少用多少，额度永不过期。推荐首次体验选¥500起。</p>
 
-    <div class="why-grid">
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(79,70,229,0.15);">&#x26A1;</div>
-            <h3>稳定可靠</h3>
-            <p>基于 硅基流动 官方渠道，DeepSeek / Qwen / Kimi 全系列模型接入，7x24 小时稳定服务，SLA 保障。</p>
+    <div class="packages">
+        <div class="pkg">
+            <div class="pkg-price">¥<small>500</small></div>
+            <div class="pkg-tokens">约 5亿 Token</div>
+            <div class="pkg-credit">约 2亿 点数</div>
+            <ul class="pkg-features">
+                <li>全模型可用</li>
+                <li>API Key 即时开通</li>
+                <li>独立账户管理</li>
+                <li>额度永不过期</li>
+            </ul>
         </div>
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(16,185,129,0.15);">&#x1F4B0;</div>
-            <h3>高额差价</h3>
-            <p>总部按成本价供货，加盟商自主定价。建议零售价 1.5~2 倍于成本，500 元预付轻松撬动数千元利润空间。</p>
+        <div class="pkg popular">
+            <div class="pkg-price">¥<small>1000</small></div>
+            <div class="pkg-tokens">约 10亿 Token</div>
+            <div class="pkg-credit">+ 赠送 5000万 点数</div>
+            <ul class="pkg-features">
+                <li>全模型可用</li>
+                <li>API Key 即时开通</li>
+                <li>独立账户管理</li>
+                <li>额度永不过期</li>
+                <li>优先技术支持</li>
+            </ul>
         </div>
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(245,158,11,0.15);">&#x1F4C1;</div>
-            <h3>自主管理后台</h3>
-            <p>独立管理后台，实时查看用量、余额、订单记录。支持 API Key 管理，额度自助充值，无需人工对账。</p>
+        <div class="pkg">
+            <div class="pkg-price">¥<small>2000</small></div>
+            <div class="pkg-tokens">约 20亿 Token</div>
+            <div class="pkg-credit">+ 赠送 1.2亿 点数</div>
+            <ul class="pkg-features">
+                <li>全模型可用</li>
+                <li>API Key 即时开通</li>
+                <li>独立账户管理</li>
+                <li>额度永不过期</li>
+                <li>专属客服通道</li>
+            </ul>
         </div>
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(236,72,153,0.15);">&#x1F310;</div>
-            <h3>一键接入</h3>
-            <p>兼容 OpenAI API 格式，Claude / GPT / Kimi 等 100+ 应用无缝迁移，3 行代码完成接入。</p>
-        </div>
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(14,165,233,0.15);">&#x1F4CA;</div>
-            <h3>T+0 实时结算</h3>
-            <p>每笔交易实时扣减总部额度，差价利润即时归你。财务透明，随时提现，无账期压力。</p>
-        </div>
-        <div class="why-card">
-            <div class="why-icon" style="background:rgba(168,85,247,0.15);">&#x1F6E0;</div>
-            <h3>持续供货</h3>
-            <p>总部持续对接优质上游，确保模型价格竞争力。加盟商优先享受新产品上线通知和专属折扣。</p>
+        <div class="pkg">
+            <div class="pkg-price">¥<small>5000</small></div>
+            <div class="pkg-tokens">约 50亿 Token</div>
+            <div class="pkg-credit">+ 赠送 3.5亿 点数</div>
+            <ul class="pkg-features">
+                <li>全模型可用</li>
+                <li>API Key 即时开通</li>
+                <li>独立账户管理</li>
+                <li>额度永不过期</li>
+                <li>专属客服 + 发票服务</li>
+            </ul>
         </div>
     </div>
 </section>
 
-<!-- 模型与价格 -->
+<!-- 模型价格 -->
 <section class="section" id="models">
     <div class="section-tag">模型与定价</div>
-    <h2>总部供货价公开透明</h2>
-    <p class="section-sub">以下为总部提供给加盟商的结算价格（仅供参考，实际以协议为准）。</p>
+    <h2>支持的模型 · 清晰明码标价</h2>
+    <p class="section-sub">以下为充值后可使用的模型，所有模型均按量计费，用多少扣多少。</p>
 
-    <div class="pricing-grid">
-        <div class="pricing-card">
-            <div class="pricing-model">推荐主力</div>
-            <div class="pricing-model" style="margin-top:0.25rem; margin-bottom:0.5rem;">DeepSeek 系列</div>
-            <h3 class="pricing-name">DeepSeek-V3</h3>
-            <div class="pricing-row">
-                <span class="pricing-label">总部供货价</span>
-                <span class="pricing-val green">¥1.02 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">建议零售价</span>
-                <span class="pricing-val highlight">¥2.5 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">单笔利润</span>
-                <span class="pricing-val">约 ¥1.48 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">适用场景</span>
-                <span class="pricing-val">日常对话、代码、写作</span>
-            </div>
-        </div>
-        <div class="pricing-card">
-            <div class="pricing-model">DeepSeek 系列</div>
-            <h3 class="pricing-name">DeepSeek-R1</h3>
-            <div class="pricing-row">
-                <span class="pricing-label">总部供货价</span>
-                <span class="pricing-val green">¥4 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">建议零售价</span>
-                <span class="pricing-val highlight">¥9.9 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">单笔利润</span>
-                <span class="pricing-val">约 ¥5.9 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">适用场景</span>
-                <span class="pricing-val">深度推理、复杂分析</span>
-            </div>
-        </div>
-        <div class="pricing-card">
-            <div class="pricing-model">通义千问系列</div>
-            <h3 class="pricing-name">Qwen3.5-9B</h3>
-            <div class="pricing-row">
-                <span class="pricing-label">总部供货价</span>
-                <span class="pricing-val green">¥0.72 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">建议零售价</span>
-                <span class="pricing-val highlight">¥1.99 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">单笔利润</span>
-                <span class="pricing-val">约 ¥1.27 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">适用场景</span>
-                <span class="pricing-val">低成本对话、轻量推理</span>
-            </div>
-        </div>
-        <div class="pricing-card">
-            <div class="pricing-model">月之暗面系列</div>
-            <h3 class="pricing-name">Kimi-K2-Instruct</h3>
-            <div class="pricing-row">
-                <span class="pricing-label">总部供货价</span>
-                <span class="pricing-val green">¥2.9 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">建议零售价</span>
-                <span class="pricing-val highlight">¥6.9 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">单笔利润</span>
-                <span class="pricing-val">约 ¥4 / 百万Token</span>
-            </div>
-            <div class="pricing-row">
-                <span class="pricing-label">适用场景</span>
-                <span class="pricing-val">长文本、多模态</span>
-            </div>
-        </div>
+    <div class="model-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>模型</th>
+                    <th>场景</th>
+                    <th>价格 / 百万Token</th>
+                    <th>特色</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="tag tag-rec">推荐</span>
+                        <strong>DeepSeek-V3</strong>
+                    </td>
+                    <td>日常对话、代码、写作</td>
+                    <td style="color:var(--secondary);font-weight:700;">¥1.02</td>
+                    <td>性价比之王</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="tag tag-rec">推荐</span>
+                        <strong>DeepSeek-R1</strong>
+                    </td>
+                    <td>深度推理、复杂分析</td>
+                    <td style="color:var(--secondary);font-weight:700;">¥4.00</td>
+                    <td>强推理能力</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="tag tag-new">低价</span>
+                        <strong>Qwen3.5-9B</strong>
+                    </td>
+                    <td>低成本对话、轻量推理</td>
+                    <td style="color:var(--secondary);font-weight:700;">¥0.72</td>
+                    <td>最便宜选项</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Kimi-K2-Instruct</strong>
+                    </td>
+                    <td>长文本、多模态</td>
+                    <td style="color:var(--secondary);font-weight:700;">¥2.90</td>
+                    <td>超长上下文</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <!-- 收益计算 -->
-    <div class="profit-box">
-        <h3>加盟商收益模拟计算器</h3>
-        <div class="profit-grid">
-            <div class="profit-item">
-                <div class="label">你预付给总部</div>
-                <div class="value">¥500</div>
+    <!-- 省钱对比 -->
+    <div class="compare-box">
+        <h3 style="font-size:1.25rem;font-weight:800;text-align:center;">对比官方价格，省 50%~80%</h3>
+        <div class="compare-grid">
+            <div class="compare-item">
+                <div class="label">官方 DeepSeek-V3</div>
+                <div class="val red">¥16</div>
+                <div class="label">/ 百万Token</div>
                 <div class="arrow">&#x2193;</div>
+                <div class="label">小贝AI 售价</div>
+                <div class="val green">¥1.02</div>
+                <div class="save">省 93%</div>
             </div>
-            <div class="profit-item">
-                <div class="label">按¥2.5/百万Token售出</div>
-                <div class="value accent">可售 2亿Token</div>
+            <div class="compare-item">
+                <div class="label">官方 Kimi-K2</div>
+                <div class="val red">¥15</div>
+                <div class="label">/ 百万Token</div>
                 <div class="arrow">&#x2193;</div>
+                <div class="label">小贝AI 售价</div>
+                <div class="val green">¥2.90</div>
+                <div class="save">省 81%</div>
             </div>
-            <div class="profit-item">
-                <div class="label">客户消费完毕，你的利润</div>
-                <div class="value">约 ¥370+</div>
-                <div class="label" style="margin-top:0.5rem; font-size:0.75rem; color:var(--text-gray);">（成本¥130，利润74%+）</div>
+            <div class="compare-item">
+                <div class="label">充值 ¥1000</div>
+                <div class="val primary">11亿</div>
+                <div class="label">Token可用</div>
+                <div class="arrow">&#x2193;</div>
+                <div class="label">折算官方价值</div>
+                <div class="val green">¥1.76万+</div>
+                <div class="save">杠杆 17x</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 如何开始 -->
-<section class="section" id="start">
-    <div class="section-tag">三步开启</div>
-    <h2>加入只需 3 步</h2>
-    <p class="section-sub">全程线上操作，无需线下签约，最快 10 分钟开通。</p>
+<!-- 如何购买 -->
+<section class="section" id="how">
+    <div class="section-tag">购买流程</div>
+    <h2>4 步开始使用</h2>
+    <p class="section-sub">全程线上完成，无需等待，最快 5 分钟开通。</p>
 
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <h3>联系总部</h3>
-            <p>添加小贝微信，说明加盟意向。总部审核通过后，提供专属加盟方案和合同。</p>
+    <div class="buy-steps">
+        <div class="buy-step">
+            <div class="buy-step-num">1</div>
+            <h3>选择套餐</h3>
+            <p>根据你的用量需求，选择合适的充值套餐。</p>
         </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <h3>预付货款</h3>
-            <p>预付至少 ¥500，总部开通独立加盟商账户，分配专属 API Key 和管理后台。</p>
+        <div class="buy-step">
+            <div class="buy-step-num">2</div>
+            <h3>联系小贝</h3>
+            <p>加微信 17786980006，说明"充值"，获取付款码。</p>
         </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <h3>开始销售</h3>
-            <p>拿到 Key 后立刻开始销售，客户付费充值到你的账户，差价实时到账，随时查看明细。</p>
+        <div class="buy-step">
+            <div class="buy-step-num">3</div>
+            <h3>付款开通</h3>
+            <p>转账后立刻开通账户，获得专属 API Key。</p>
         </div>
+        <div class="buy-step">
+            <div class="buy-step-num">4</div>
+            <h3>开始使用</h3>
+            <p>3行代码接入，立即开始调用，额度永不过期。</p>
+        </div>
+    </div>
+
+    <!-- 购买表单 -->
+    <div class="buy-form-wrap" id="buy">
+        <div class="form-title">快速预约充值</div>
+        <div class="form-sub">填写信息，小贝主动联系你，最快5分钟开通</div>
+
+        <form id="orderForm" onsubmit="return submitOrder(event)">
+            <div class="pkg-select-grid">
+                <input type="radio" name="pkg" value="500" id="pkg500" class="pkg-radio" checked>
+                <label for="pkg500" class="pkg-radio-label">
+                    <div class="pkg-r-price">¥500</div>
+                    <div class="pkg-r-cred">约2亿点数</div>
+                </label>
+
+                <input type="radio" name="pkg" value="1000" id="pkg1000" class="pkg-radio">
+                <label for="pkg1000" class="pkg-radio-label">
+                    <div class="pkg-r-price">¥1000</div>
+                    <div class="pkg-r-cred">约5亿+赠送</div>
+                </label>
+
+                <input type="radio" name="pkg" value="2000" id="pkg2000" class="pkg-radio">
+                <label for="pkg2000" class="pkg-radio-label">
+                    <div class="pkg-r-price">¥2000</div>
+                    <div class="pkg-r-cred">约10亿+赠送</div>
+                </label>
+
+                <input type="radio" name="pkg" value="5000" id="pkg5000" class="pkg-radio">
+                <label for="pkg5000" class="pkg-radio-label">
+                    <div class="pkg-r-price">¥5000</div>
+                    <div class="pkg-r-cred">约25亿+赠送</div>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>微信号 / 手机号</label>
+                <input type="text" id="contact" placeholder="方便小贝联系你" required>
+            </div>
+            <div class="form-group">
+                <label>备注（选填）</label>
+                <input type="text" id="note" placeholder="如：需要发票、需要多Key等">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                &#x2709; 提交预约，小贝联系你
+            </button>
+            <p class="submit-note">提交后小贝会在24小时内微信联系你，请留意好友申请</p>
+        </form>
     </div>
 </section>
 
-<!-- API文档 -->
-<section class="section" id="api">
-    <div class="section-tag">技术接入</div>
-    <h2>3 行代码，接入任意应用</h2>
-    <p class="section-sub">完全兼容 OpenAI 格式，现有应用无需修改代码，只需换一个 API 地址。</p>
-
-    <div class="api-demo">
-        <div class="api-tabs">
-            <div class="api-tab active">Python</div>
-            <div class="api-tab">JavaScript</div>
-            <div class="api-tab">Curl</div>
+<!-- 保障 -->
+<section class="section" style="padding-top:0;">
+    <div class="guarantees">
+        <div class="guarantee">
+            <div class="guarantee-icon">&#x1F512;</div>
+            <h4>额度永不过期</h4>
+            <p>充值后额度长期有效，用多少扣多少，不用担心浪费。</p>
         </div>
-        <div class="api-code" id="code-display"><span class="c"># 安装 openai 库</span>
-<span class="fn">pip install</span> openai
-
-<span class="c"># Python 调用示例</span>
-<span class="k">from</span> openai <span class="k">import</span> OpenAI
-
-client = OpenAI(
-    api_key=<span class="s">"sk-你的加盟商Key"</span>,
-    base_url=<span class="s">"https://ivvrauwc.cloud.sealos.io/v1"</span>
-)
-
-response = client.chat.completions.create(
-    model=<span class="s">"deepseek-ai/DeepSeek-V3"</span>,
-    messages=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"你好"</span>}],
-    max_tokens=<span class="k">200</span>
-)
-<span class="k">print</span>(response.choices[<span class="k">0</span>].message.content)</div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem;">
-        <div class="pricing-card">
-            <div class="pricing-model">接入地址</div>
-            <div style="font-family:monospace; font-size:0.85rem; color:#818CF8; margin-top:0.5rem;">https://ivvrauwc.cloud.sealos.io/v1</div>
+        <div class="guarantee">
+            <div class="guarantee-icon">&#x26A1;</div>
+            <h4>开通即用</h4>
+            <p>付款后立刻获得 API Key，3行代码直接接入，0等待。</p>
         </div>
-        <div class="pricing-card">
-            <div class="pricing-model">认证方式</div>
-            <div style="font-size:0.9rem; margin-top:0.5rem;">Bearer Token</div>
-        </div>
-        <div class="pricing-card">
-            <div class="pricing-model">接口格式</div>
-            <div style="font-size:0.9rem; margin-top:0.5rem;">OpenAI Chat Completions API</div>
+        <div class="guarantee">
+            <div class="guarantee-icon">&#x1F4F1;</div>
+            <h4>客服在线</h4>
+            <p>微信客服 17786980006，工作日 9:00-22:00 即时响应。</p>
         </div>
     </div>
 </section>
@@ -577,38 +663,38 @@ response = client.chat.completions.create(
 
     <div class="faq-list">
         <div class="faq-item open">
-            <div class="faq-q">加盟需要什么条件？<span class="faq-icon">+</span></div>
-            <div class="faq-a">只需预付 ¥500 货款即可成为加盟商。无需公司资质，无需线下签约，全程线上完成。</div>
+            <div class="faq-q">充值后如何获得 API Key？<span class="faq-icon">+</span></div>
+            <div class="faq-a">付款成功后，小贝会在微信上发送你的专属 API Key。Key 格式如 `sk-xxxxx`，拿到后立刻可以使用。</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">资金安全有保障吗？<span class="faq-icon">+</span></div>
-            <div class="faq-a">总部提供独立管理后台，所有交易记录透明可查。T+0 实时结算，差价利润即时归你，随时可提现。</div>
+            <div class="faq-q">额度用完怎么办？<span class="faq-icon">+</span></div>
+            <div class="faq-a">额度永不过期，随时可以追加充值。微信联系小贝转账即可，即充即用。</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">额度用完了怎么办？<span class="faq-icon">+</span></div>
-            <div class="faq-a">登录管理后台，自主充值即可。最低 ¥100 起充，即充即用，无等待期。</div>
+            <div class="faq-q">支持哪些应用接入？<span class="faq-icon">+</span></div>
+            <div class="faq-a">完全兼容 OpenAI 格式，支持 ChatGPT-API、Claude-API、所有 OpenAI 生态工具（如 Cursor、Coze、Wordware、Pollinations 等）。</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">可以同时服务多个客户吗？<span class="faq-icon">+</span></div>
-            <div class="faq-a">可以。一个加盟商 Key 可供多个下游客户使用，建议配合 API Key 子账号或分销系统使用。</div>
+            <div class="faq-q">服务稳定吗？<span class="faq-icon">+</span></div>
+            <div class="faq-a">使用硅基流动官方渠道作为上游，稳定性有保障。我们提供 99.5%+ 可用率保障。</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">如果AI服务不稳定怎么办？<span class="faq-icon">+</span></div>
-            <div class="faq-a">我们使用 硅基流动 官方渠道，稳定性有保障。若遇突发问题，总部会在群里第一时间通知，并提供解决方案。</div>
+            <div class="faq-q">可以开发票吗？<span class="faq-icon">+</span></div>
+            <div class="faq-a">累计充值满 ¥2000 可申请发票。发票由新越（海南）一人有限公司开具。</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">加盟商有区域限制吗？<span class="faq-icon">+</span></div>
-            <div class="faq-a">没有。线上业务无地域限制，全国乃至海外客户均可服务。</div>
+            <div class="faq-q">有试用额度吗？<span class="faq-icon">+</span></div>
+            <div class="faq-a">有。首次充值满 ¥500 的用户，可联系小贝申请 100 万 Token 体验额度。</div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-    <h2>准备好了？一起赚钱</h2>
-    <p>添加小贝微信，说明「加盟」，立即开通你的专属账户。</p>
-    <a href="javascript:void(0)" class="btn-primary" onclick="alert('请加微信说明加盟：17786980006')">
-        立即联系小贝
+    <h2>开始使用 · 省钱从现在开始</h2>
+    <p>添加小贝微信，说明「充值」，小贝立刻帮你开通。</p>
+    <a href="javascript:void(0)" class="btn-primary" onclick="showModal()">
+        &#x2709; 微信联系小贝
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <div class="cta-contacts">
@@ -623,13 +709,33 @@ response = client.chat.completions.create(
     </div>
 </section>
 
+<!-- 微信弹窗 -->
+<div class="modal-overlay" id="wechatModal">
+    <div class="modal">
+        <div class="modal-icon">&#x2709;</div>
+        <h3>添加小贝微信</h3>
+        <p>扫码或搜索微信号，备注「充值」，小贝立刻帮你开通账户。</p>
+        <div class="modal-qr">
+            <!-- 微信二维码占位：替换src为实际二维码图片 -->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' fill='none'%3E%3Crect width='200' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2394A3B8' font-size='14'%3E微信二维码%3C/text%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dy='1.5em' fill='%2394A3B8' font-size='12'%3E17786980006%3C/text%3E%3C/svg%3E" alt="微信二维码">
+        </div>
+        <div class="modal-wechat">
+            或搜索微信号：<strong>17786980006</strong>
+        </div>
+        <div class="modal-note">
+            &#x21313; 小贝 = 小贝AI中转站官方客服，转账后立刻开通账户
+        </div>
+        <button class="modal-close" onclick="closeModal()">关闭</button>
+    </div>
+</div>
+
 <!-- 页脚 -->
 <footer class="footer">
     <p>&copy; 2026 小贝AI API中转站 | 新越（海南）一人有限公司</p>
 </footer>
 
 <script>
-    // FAQ手风琴
+    // FAQ
     document.querySelectorAll('.faq-q').forEach(function(q) {
         q.addEventListener('click', function() {
             var item = this.parentElement;
@@ -648,20 +754,46 @@ response = client.chat.completions.create(
         });
     });
 
-    // API代码标签切换
-    var tabs = document.querySelectorAll('.api-tab');
-    var codes = [
-        '<span class="c"># 安装 openai 库</span>\n<span class="fn">pip install</span> openai\n\n<span class="c"># Python 调用示例</span>\n<span class="k">from</span> openai <span class="k">import</span> OpenAI\n\nclient = OpenAI(\n    api_key=<span class="s">"sk-你的加盟商Key"</span>,\n    base_url=<span class="s">"https://ivvrauwc.cloud.sealos.io/v1"</span>\n)\n\nresponse = client.chat.completions.create(\n    model=<span class="s">"deepseek-ai/DeepSeek-V3"</span>,\n    messages=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"你好"</span>}],\n    max_tokens=<span class="k">200</span>\n)\n<span class="k">print</span>(response.choices[<span class="k">0</span>].message.content)',
-        '<span class="c">// JavaScript / Node.js 调用示例</span>\n<span class="k">import</span> OpenAI <span class="k">from</span> <span class="s">\'openai\'</span>;\n\n<span class="k">const</span> client = <span class="k">new</span> OpenAI({\n  apiKey: <span class="s">\'sk-你的加盟商Key\'</span>,\n  baseURL: <span class="s">\'https://ivvrauwc.cloud.sealos.io/v1\'</span>,\n});\n\n<span class="k">const</span> chat = <span class="k">await</span> client.chat.completions.create({\n  model: <span class="s">\'deepseek-ai/DeepSeek-V3\'</span>,\n  messages: [{ role: <span class="s">\'user\'</span>, content: <span class="s">\'你好\'</span> }],\n  max_tokens: <span class="k">200</span>,\n});\n\nconsole.log(chat.choices[<span class="k">0</span>].message.content);',
-        '<span class="c"># Curl 调用示例</span>\ncurl -X POST \\\n  <span class="s">"https://ivvrauwc.cloud.sealos.io/v1/chat/completions"</span> \\\n  -H <span class="s">"Authorization: Bearer sk-你的加盟商Key"</span> \\\n  -H <span class="s">"Content-Type: application/json"</span> \\\n  -d <span class="s">\'{"model":"deepseek-ai/DeepSeek-V3","messages":[{"role":"user","content":"你好"}],"max_tokens":200}\'</span>'
-    ];
-    tabs.forEach(function(tab, i) {
-        tab.addEventListener('click', function() {
-            tabs.forEach(function(t) { t.classList.remove('active'); });
-            this.classList.add('active');
-            document.getElementById('code-display').innerHTML = codes[i];
-        });
+    // 弹窗
+    function showModal() {
+        document.getElementById('wechatModal').classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('wechatModal').classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('wechatModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
     });
+
+    // 提交预约
+    function submitOrder(e) {
+        e.preventDefault();
+        var pkg = document.querySelector('input[name="pkg"]:checked').value;
+        var contact = document.getElementById('contact').value.trim();
+        var note = document.getElementById('note').value.trim();
+
+        if (!contact) {
+            alert('请填写联系方式，方便小贝联系你');
+            return false;
+        }
+
+        var msg = '【小贝AI充值预约】\n\n套餐：¥' + pkg + '\n联系方式：' + contact;
+        if (note) msg += '\n备注：' + note;
+
+        // 复制预约信息
+        navigator.clipboard && navigator.clipboard.writeText(msg).then(function() {
+            alert('预约信息已复制！\n\n请加微信 17786980006 粘贴给，小贝帮你开通。');
+        }).catch(function() {
+            alert('预约信息：\n' + msg + '\n\n请加微信 17786980006 联系小贝');
+        });
+
+        // 打开微信弹窗
+        showModal();
+        return false;
+    }
 </script>
+
 </body>
 </html>
